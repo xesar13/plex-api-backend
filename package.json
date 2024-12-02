@@ -1,0 +1,24 @@
+{
+  "name": "plex-api-backend",
+  "version": "1.0.0",
+  "description": "API para interactuar con el servidor Plex",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "pm2": "pm2 start ecosystem.config.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.21.1",
+    "http-proxy-middleware": "^3.0.3",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "pm2": "^5.1.0"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT"
+}
