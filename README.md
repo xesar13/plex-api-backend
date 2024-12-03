@@ -40,7 +40,11 @@ plex-api-backend
    ```
 
 3. Configura el archivo `.env` con la URL de tu servidor Plex y las credenciales necesarias.
-
+```
+PLEX_URL=http://URL_SERVER:32400
+PLEX_TOKEN=TOKEN_PLEX
+PORT=PORT_LOCAL_SERVER
+```
 ## Ejecución
 
 Para ejecutar la aplicación, utiliza PM2:
