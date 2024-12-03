@@ -57,6 +57,16 @@ pm2 start ecosystem.config.js
 
 - `GET /api/plex/libraries`: Obtiene información sobre las bibliotecas de Plex.
 - `GET /api/plex/media/:id`: Obtiene información sobre un medio específico en Plex.
+- `GET /api/plex/playmedia/:id`: Obtiene el video directo del servidor de Plex, debes obtener el ratingkey y colocarlo en ID.
+- `GET /api/plex/authenticate`: Obtiene el token Plex.
+```
+   POST REQUEST:
+   user: {
+                login: email,
+                password: password
+         }
+```
+- `GET /api/plex/mediametadata/:id`: Está vinculada al método getMediaInfoMetadataController del plexController. Esta ruta se utiliza para obtener los metadatos de un medio específico, identificado por el parámetro id
 
 ## Contribuciones
 
