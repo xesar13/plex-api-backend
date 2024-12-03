@@ -33,8 +33,8 @@ class PlexController {
     async playMediaController(req, res) {
         const { id } = req.params;
         try {
-            const playbackUrl = await plexService.playVideoPartService(id);
-            res.send(playbackUrl);
+             await plexService.playVideoPartService(id,res,req);
+            
         } catch (error) {
             res.status(500).json({ message: 'Error al obtener la información del medio', error });
         }

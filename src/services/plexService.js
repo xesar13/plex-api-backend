@@ -112,15 +112,35 @@ class PlexService {
         }
     }
 
-    async playVideoPartService(ratingKey){
+    async playVideoPartService(ratingKey,res,req){
         try {
-            const response = `${this.baseURL}/library/parts/${ratingKey}/file?X-Plex-Token=${process.env.PLEX_TOKEN}`;
-            console.log("Información de la parte:", response); // Información de la parte
-             
-            return response;
-          } catch (error) {
-            console.error("Error obteniendo la información de la parte:", error.message);
-          }
+            const url = `${this.baseURL}/library/parts/${ratingKey}/file?X-Plex-Token=${process.env.PLEX_TOKEN}`;
+            const range = req.headers.range;
+
+            const headers = {};
+            if (range) {
+                headers.Range = range;
+            }
+
+            const response = await axios.get(url, {
+                headers,
+                responseType: 'stream'
+            });
+
+            // Copiar los encabezados de la respuesta de axios a la respuesta de Express
+            Object.keys(response.headers).forEach(key => {
+                res.setHeader(key, response.headers[key]);
+            });
+
+            if (range) {
+                res.status(206); // HTTP Status 206 for Partial Content
+            }
+
+            response.data.pipe(res);
+        } catch (error) {
+            console.error("Error playing video part:", error.message);
+            throw error;
+        }
     }
 
     async getMoviePartInfoService(ratingKey){
